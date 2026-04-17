@@ -1,0 +1,100 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: posts
+    // Document ID: auto-generated
+    // Fields:
+    //   - content: string (required, max 1000 chars)
+    //   - imageUrl: string (optional, valid URL)
+    //   - createdAt: timestamp (required)
+    //   - authorUid: string (required, must match admin UID)
+    //
+    // Collection: posts/{postId}/replies
+    // Document ID: auto-generated
+    // Fields:
+    //   - postId: string (required)
+    //   - content: string (required, max 500 chars)
+    //   - authorName: string (required, max 50 chars)
+    //   - createdAt: timestamp (required)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.email == "ajidev6@gmail.com" && request.auth.token.email_verified == true;
+    }
+
+    function hasOnlyAllowedFields(allowedFields) {
+      return request.resource.data.keys().hasOnly(allowedFields);
+    }
+
+    function hasRequiredFields(requiredFields) {
+      return request.resource.data.keys().hasAll(requiredFields);
+    }
+
+    function isValidUrl(url) {
+      return url is string && (url.matches("^https://.*") || url.matches("^http://.*"));
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidPost() {
+      let data = request.resource.data;
+      let allowedFields = ['content', 'imageUrl', 'createdAt', 'authorUid'];
+      let requiredFields = ['content', 'createdAt', 'authorUid'];
+      
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(requiredFields) &&
+             data.content is string && data.content.size() > 0 && data.content.size() <= 2000 &&
+             (!('imageUrl' in data) || isValidUrl(data.imageUrl)) &&
+             data.createdAt is timestamp &&
+             data.authorUid is string && data.authorUid == request.auth.uid;
+    }
+
+    function isValidReply(postId) {
+      let data = request.resource.data;
+      let allowedFields = ['postId', 'content', 'authorName', 'createdAt'];
+      let requiredFields = ['postId', 'content', 'authorName', 'createdAt'];
+      
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(requiredFields) &&
+             data.postId == postId &&
+             data.content is string && data.content.size() > 0 && data.content.size() <= 500 &&
+             data.authorName is string && data.authorName.size() > 0 && data.authorName.size() <= 50 &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidPost();
+      allow update: if isAdmin() && isValidPost() && request.resource.data.authorUid == resource.data.authorUid && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
+
+      match /replies/{replyId} {
+        allow read: if true;
+        // Anyone can reply, even unauthenticated users, as long as the payload is valid
+        allow create: if isValidReply(postId);
+        allow update: if false; // Replies cannot be edited
+        allow delete: if isAdmin(); // Only admin can delete replies
+      }
+    }
+  }
+}
