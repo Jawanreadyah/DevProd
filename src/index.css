@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --animate-highlight: highlight 0.6s ease forwards;
+  --animate-flash: flash 0.6s ease forwards;
+
+  @keyframes highlight {
+    0% { background-color: transparent; }
+    100% { background-color: var(--highlight); }
+  }
+
+  @keyframes flash {
+    0% { background-color: var(--card); }
+    50% { background-color: var(--highlight); }
+    100% { background-color: var(--card); }
+  }
+}
+
+body {
+  background-color: #ffffff;
+  color: #111827;
+  cursor: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --commits-card-bg: #f9fafb;
+}
+
+.dark {
+  --commits-card-bg: #222222;
+}
+
+.dark body,
+html.dark body {
+  background-color: #0a0a0a;
+  color: #e5e7eb;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}

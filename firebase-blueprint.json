@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Post",
+      "description": "A post in the feed",
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The text content of the post"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Optional image URL for the post"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "When the post was created"
+        },
+        "authorUid": {
+          "type": "string",
+          "description": "The UID of the admin who created the post"
+        }
+      },
+      "required": ["content", "createdAt", "authorUid"]
+    },
+    "Reply": {
+      "title": "Reply",
+      "description": "A reply to a post",
+      "type": "object",
+      "properties": {
+        "postId": {
+          "type": "string",
+          "description": "The ID of the post this replies to"
+        },
+        "content": {
+          "type": "string",
+          "description": "The text content of the reply"
+        },
+        "authorName": {
+          "type": "string",
+          "description": "The username provided by the replier"
+        },
+        "createdAt": {
+          "type": "timestamp",
+          "description": "When the reply was created"
+        }
+      },
+      "required": ["postId", "content", "authorName", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": {
+        "$ref": "#/entities/Post"
+      },
+      "description": "Collection of feed posts"
+    },
+    "/posts/{postId}/replies/{replyId}": {
+      "schema": {
+        "$ref": "#/entities/Reply"
+      },
+      "description": "Collection of replies to a specific post"
+    }
+  }
+}
