@@ -34,6 +34,7 @@ import esportsUntitled6 from '../ESPORTS/esports_untitled6.webp';
 import esportsWchWork from '../ESPORTS/esports_wch_work.webp';
 import esportsMatchday from '../ESPORTS/matchday_rexin.webp';
 import esportsRexin2 from '../ESPORTS/rexin2.webp';
+import esportsVertios from '../ESPORTS/vertios.webp';
 import sports1 from '../Sports/sports1.webp';
 import sports2 from '../Sports/sports2.webp';
 import sports3 from '../Sports/sports3.webp';
@@ -148,6 +149,7 @@ const DESIGN_CATEGORIES = [
       esportsWchWork,
       esportsMatchday,
       esportsRexin2,
+      esportsVertios,
     ],
   },
   {
