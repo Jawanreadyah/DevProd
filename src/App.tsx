@@ -12,6 +12,7 @@ import { CommitsGrid } from './components/ui/commits-grid';
 import { Tilt3D, TiltButton } from './components/ui/tilt-3d';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import esports2 from '../ESPORTS/2.webp';
+import esports3 from '../ESPORTS/3.webp';
 import esports3dbba353 from '../ESPORTS/3dbba353-323c-443d-ba59-68f03a0ace44.webp';
 import esportsContent1 from '../ESPORTS/content (1).webp';
 import esportsContent3 from '../ESPORTS/content (3).webp';
@@ -125,6 +126,7 @@ const DESIGN_CATEGORIES = [
     preview: esportsContent23,
     images: [
       esports2,
+      esports3,
       esports3dbba353,
       esportsContent1,
       esportsContent3,
