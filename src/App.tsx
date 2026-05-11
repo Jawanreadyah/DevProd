@@ -31,6 +31,7 @@ import esportsImgi128Width from '../ESPORTS/imgi_128_width1122.webp';
 import esportsImgi1Width from '../ESPORTS/imgi_1_width565.webp';
 import esportsUntitled6 from '../ESPORTS/esports_untitled6.webp';
 import esportsWchWork from '../ESPORTS/esports_wch_work.webp';
+import esportsMatchday from '../ESPORTS/matchday_rexin.webp';
 import sports1 from '../Sports/sports1.webp';
 import sports2 from '../Sports/sports2.webp';
 import sports3 from '../Sports/sports3.webp';
@@ -142,6 +143,7 @@ const DESIGN_CATEGORIES = [
       esportsImgi1Width,
       esportsUntitled6,
       esportsWchWork,
+      esportsMatchday,
     ],
   },
   {
