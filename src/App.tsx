@@ -12,7 +12,7 @@ import { CommitsGrid } from './components/ui/commits-grid';
 import { Tilt3D, TiltButton } from './components/ui/tilt-3d';
 import { BrowserRouter, Routes, Route, Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import esports2 from '../ESPORTS/2.webp';
-import esports3dbba353 from '../ESPORTS/3dbba353-323c-443d-ba59-68f03a0ace44.png';
+import esports3dbba353 from '../ESPORTS/3dbba353-323c-443d-ba59-68f03a0ace44.webp';
 import esportsContent1 from '../ESPORTS/content (1).webp';
 import esportsContent3 from '../ESPORTS/content (3).webp';
 import esportsContent4 from '../ESPORTS/content (4).webp';
@@ -26,21 +26,21 @@ import esportsImage from '../ESPORTS/image.webp';
 import esportsWidth112823423 from '../ESPORTS/width112823423.webp';
 import esportsWidth1129 from '../ESPORTS/width1129.webp';
 import esportsWidth647234234 from '../ESPORTS/width647234234.webp';
-import esportsImgi128Content from '../ESPORTS/imgi_128_content.png';
-import esportsImgi128Width from '../ESPORTS/imgi_128_width1122.png';
-import esportsImgi1Width from '../ESPORTS/imgi_1_width565.png';
-import esportsUntitled6 from '../ESPORTS/esports_untitled6.png';
-import esportsWchWork from '../ESPORTS/esports_wch_work.png';
-import sports1 from '../Sports/sports1.png';
-import sports2 from '../Sports/sports2.png';
-import sports3 from '../Sports/sports3.png';
-import sports4 from '../Sports/sports4.png';
-import sports5 from '../Sports/sports5.png';
-import sports6 from '../Sports/sports6.png';
+import esportsImgi128Content from '../ESPORTS/imgi_128_content.webp';
+import esportsImgi128Width from '../ESPORTS/imgi_128_width1122.webp';
+import esportsImgi1Width from '../ESPORTS/imgi_1_width565.webp';
+import esportsUntitled6 from '../ESPORTS/esports_untitled6.webp';
+import esportsWchWork from '../ESPORTS/esports_wch_work.webp';
+import sports1 from '../Sports/sports1.webp';
+import sports2 from '../Sports/sports2.webp';
+import sports3 from '../Sports/sports3.webp';
+import sports4 from '../Sports/sports4.webp';
+import sports5 from '../Sports/sports5.webp';
+import sports6 from '../Sports/sports6.webp';
 import franksChoiceMp3 from '../ESPORTS/franks-choice.mp3';
 import franksChoiceCover from '../ESPORTS/maxresdefault.jpg';
-import othersThumbnail1 from '../others/thumbnail1.png';
-import othersThumbnail2 from '../others/thumbnail2.jpg';
+import othersThumbnail1 from '../others/thumbnail1.webp';
+import othersThumbnail2 from '../others/thumbnail2.webp';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -184,6 +184,7 @@ function DesignWorksGrid() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 group-hover:from-black/90 group-hover:via-black/40 transition-all duration-300" />
                     <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -223,6 +224,7 @@ function DesignWorksGrid() {
                       className="w-full h-auto block"
                       referrerPolicy="no-referrer"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))}
