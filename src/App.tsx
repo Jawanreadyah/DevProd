@@ -225,9 +225,9 @@ function DesignWorksGrid() {
             </button>
             <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">{active?.name}</h3>
             {active && active.images.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 overflow-y-auto max-h-[70vh] pr-1" style={{ scrollbarWidth: 'thin' }}>
+              <div className="flex flex-col gap-3 overflow-y-auto max-h-[80vh] pr-1" style={{ scrollbarWidth: 'thin' }}>
                 {active.images.map((src, i) => (
-                  <div key={i} className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-[#222] border border-black/5 dark:border-white/5 shadow-sm">
+                  <div key={i} className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-[#222] border border-black/5 dark:border-white/5 shadow-sm shrink-0">
                     <img
                       src={src}
                       alt={`${active.name} design ${i + 1}`}
