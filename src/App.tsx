@@ -38,6 +38,7 @@ import esportsVertios from '../ESPORTS/vertios.webp';
 import esportsNova from '../ESPORTS/nova.webp';
 import esportsValorantPractice from '../ESPORTS/valorant practice.png';
 import esportsFlc from '../ESPORTS/flc.png';
+import esportsFlcReal from '../ESPORTS/flcreal.png';
 import sports1 from '../Sports/sports1.webp';
 import sports2 from '../Sports/sports2.webp';
 import sports3 from '../Sports/sports3.webp';
@@ -156,6 +157,7 @@ const DESIGN_CATEGORIES = [
       esportsNova,
       esportsValorantPractice,
       esportsFlc,
+      esportsFlcReal,
     ],
   },
   {
