@@ -36,6 +36,8 @@ import esportsMatchday from '../ESPORTS/matchday_rexin.webp';
 import esportsRexin2 from '../ESPORTS/rexin2.webp';
 import esportsVertios from '../ESPORTS/vertios.webp';
 import esportsNova from '../ESPORTS/nova.webp';
+import esportsValorantPractice from '../ESPORTS/valorant_practice.webp';
+import esportsFlc from '../ESPORTS/flc.webp';
 import sports1 from '../Sports/sports1.webp';
 import sports2 from '../Sports/sports2.webp';
 import sports3 from '../Sports/sports3.webp';
@@ -152,6 +154,8 @@ const DESIGN_CATEGORIES = [
       esportsRexin2,
       esportsVertios,
       esportsNova,
+      esportsValorantPractice,
+      esportsFlc,
     ],
   },
   {
