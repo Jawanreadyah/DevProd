@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon, Play, Pause, SkipForward, SkipBack, Music } from 'lucide-react';
+import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon } from 'lucide-react';
 import * as React from 'react';
 import { useState } from 'react';
 import { motion } from "motion/react";
@@ -45,8 +45,6 @@ import sports3 from '../Sports/sports3.webp';
 import sports4 from '../Sports/sports4.webp';
 import sports5 from '../Sports/sports5.webp';
 import sports6 from '../Sports/sports6.webp';
-import franksChoiceMp3 from '../ESPORTS/franks-choice.mp3';
-import franksChoiceCover from '../ESPORTS/maxresdefault.jpg';
 import othersThumbnail1 from '../others/thumbnail1.webp';
 import othersThumbnail2 from '../others/thumbnail2.webp';
 
@@ -345,141 +343,10 @@ function DarkModeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-const PLAYLIST = [
-  { title: "Frank's Choice", artist: "Tyler Bates", cover: franksChoiceCover, src: franksChoiceMp3 },
-];
-
-function DynamicIsland() {
-  const [expanded, setExpanded] = React.useState(false);
-  const [playing, setPlaying] = React.useState(false);
-  const [trackIndex, setTrackIndex] = React.useState(0);
-  const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  const track = PLAYLIST[trackIndex];
-
-  React.useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(track.src);
-      audioRef.current.loop = true;
-      audioRef.current.play().then(() => {
-        setPlaying(true);
-      }).catch(() => {
-        const playOnClick = () => {
-          if (audioRef.current) {
-            audioRef.current.play().then(() => setPlaying(true));
-          }
-          document.removeEventListener('click', playOnClick);
-        };
-        document.addEventListener('click', playOnClick);
-      });
-    }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.src = track.src;
-      if (playing) audioRef.current.play();
-    }
-  }, [trackIndex]);
-
-  const next = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setTrackIndex((i) => (i + 1) % PLAYLIST.length);
-  };
-  const prev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setTrackIndex((i) => (i - 1 + PLAYLIST.length) % PLAYLIST.length);
-  };
-  const togglePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setPlaying((p) => {
-      const next = !p;
-      if (audioRef.current) {
-        if (next) audioRef.current.play();
-        else audioRef.current.pause();
-      }
-      return next;
-    });
-  };
-
-  React.useEffect(() => {
-    if (!expanded) return;
-    const timer = setTimeout(() => setExpanded(false), 2000);
-    return () => clearTimeout(timer);
-  }, [expanded]);
-
-  return (
-    <div className="fixed top-0 left-1/2 -translate-x-1/2 z-[100]">
-      <motion.div
-        onClick={() => setExpanded((e) => !e)}
-        className="bg-black rounded-b-[24px] cursor-pointer overflow-hidden flex items-end shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
-        animate={{
-          width: expanded ? 340 : 180,
-          height: expanded ? 80 : 40,
-          paddingBottom: expanded ? 12 : 8,
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      >
-        {!expanded ? (
-          <div className="flex items-center justify-between w-full px-4 gap-2">
-            <div className="w-5 h-5 rounded-md overflow-hidden shrink-0">
-              <img src={track.cover} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-white font-medium truncate">{track.title}</p>
-            </div>
-            <div className="flex items-center gap-0.5">
-              {playing ? (
-                <div className="flex items-end gap-[2px] h-3">
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['4px', '12px', '4px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut' }} />
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['8px', '4px', '8px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut', delay: 0.2 }} />
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['4px', '10px', '4px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut', delay: 0.4 }} />
-                </div>
-              ) : (
-                <Music className="w-3 h-3 text-white/50" />
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center w-full px-4 gap-3">
-            <motion.div
-              className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-lg"
-              animate={{ rotate: playing ? 360 : 0 }}
-              transition={{ repeat: playing ? Infinity : 0, duration: 4, ease: 'linear' }}
-            >
-              <img src={track.cover} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-white font-semibold truncate">{track.title}</p>
-              <p className="text-[10px] text-white/50 truncate">{track.artist}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={prev} className="text-white/70 hover:text-white transition-colors">
-                <SkipBack className="w-4 h-4" fill="currentColor" />
-              </button>
-              <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform">
-                {playing ? <Pause className="w-4 h-4 text-black" fill="black" /> : <Play className="w-4 h-4 text-black ml-0.5" fill="black" />}
-              </button>
-              <button onClick={next} className="text-white/70 hover:text-white transition-colors">
-                <SkipForward className="w-4 h-4" fill="currentColor" />
-              </button>
-            </div>
-          </div>
-        )}
-      </motion.div>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <DarkModeProvider>
       <BrowserRouter>
-        <DynamicIsland />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
