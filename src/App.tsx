@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon } from 'lucide-react';
+import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon, Palette, X } from 'lucide-react';
 import * as React from 'react';
 import { useState } from 'react';
 import { motion } from "motion/react";
@@ -783,6 +783,7 @@ function Contact() {
 function FloatingNav() {
   const { dark } = useDarkMode();
   const [showWipToast, setShowWipToast] = React.useState(false);
+  const [showDesigns, setShowDesigns] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -811,30 +812,47 @@ function FloatingNav() {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#2a2a2a]/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md rounded-3xl px-6 py-3 flex items-center gap-8 shadow-xl z-50">
-      <NavItem icon={<Home className="w-5 h-5" />} label="Home" onClick={() => scrollTo('home')} active={location.pathname === '/' && !window.location.hash} />
-      <NavItem icon={<Folder className="w-5 h-5" />} label="Projects" onClick={() => scrollTo('projects')} active={location.pathname.startsWith('/projects')} />
-      <NavItem icon={<User className="w-5 h-5" />} label="About" onClick={() => scrollTo('about')} />
-      <NavItem icon={<Mail className="w-5 h-5" />} label="Contact" onClick={() => scrollTo('contact')} />
-      <div className="w-px h-6 bg-white/20" />
-      <div className="relative">
-        <button onClick={handleDarkModeClick} className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-200 transition-colors" aria-label="Toggle dark mode">
-          {dark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5" />}
-          <span className="text-[10px] font-medium">{dark ? 'Light' : 'Dark'}</span>
-        </button>
-        {showWipToast && (
-          <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white dark:bg-[#2a2a2a] text-gray-400 dark:text-gray-500 px-4 py-2 rounded-xl text-sm shadow-lg z-50 whitespace-nowrap border border-gray-100 dark:border-white/10" style={{ fontFamily: "'Caveat', cursive" }}>
-            work in progress...
-          </div>
-        )}
+    <>
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#2a2a2a]/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md rounded-3xl px-6 py-3 flex items-center gap-8 shadow-xl z-50">
+        <NavItem icon={<Home className="w-5 h-5" />} label="Home" onClick={() => scrollTo('home')} active={location.pathname === '/' && !window.location.hash} />
+        <NavItem icon={<Folder className="w-5 h-5" />} label="Projects" onClick={() => scrollTo('projects')} active={location.pathname.startsWith('/projects')} />
+        <NavItem icon={<User className="w-5 h-5" />} label="About" onClick={() => scrollTo('about')} />
+        <NavItem icon={<Mail className="w-5 h-5" />} label="Contact" onClick={() => scrollTo('contact')} />
+        <NavItem icon={<Palette className="w-5 h-5" />} label="Designs" onClick={() => setShowDesigns(true)} className="lg:hidden" />
+        <div className="w-px h-6 bg-white/20" />
+        <div className="relative">
+          <button onClick={handleDarkModeClick} className="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-200 transition-colors" aria-label="Toggle dark mode">
+            {dark ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5" />}
+            <span className="text-[10px] font-medium">{dark ? 'Light' : 'Dark'}</span>
+          </button>
+          {showWipToast && (
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-white dark:bg-[#2a2a2a] text-gray-400 dark:text-gray-500 px-4 py-2 rounded-xl text-sm shadow-lg z-50 whitespace-nowrap border border-gray-100 dark:border-white/10" style={{ fontFamily: "'Caveat', cursive" }}>
+              work in progress...
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      {showDesigns && (
+        <div className="lg:hidden fixed inset-0 z-[60] bg-white dark:bg-[#0a0a0a] overflow-y-auto">
+          <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-4 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-black/5 dark:border-white/5">
+            <h2 className="text-sm font-bold tracking-[0.2em] text-gray-900 dark:text-gray-100 uppercase">Graphic Design Works</h2>
+            <button onClick={() => setShowDesigns(false)} className="p-2 -mr-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" aria-label="Close designs">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="p-4 pb-28">
+            <DesignWorksGrid />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
-function NavItem({ icon, label, onClick, active = false }: { icon: React.ReactNode, label: string, onClick: () => void, active?: boolean }) {
+function NavItem({ icon, label, onClick, active = false, className = "" }: { icon: React.ReactNode, label: string, onClick: () => void, active?: boolean, className?: string }) {
   return (
-    <button onClick={onClick} className={`flex flex-col items-center gap-1 ${active ? 'text-white' : 'text-gray-400 hover:text-gray-200'} transition-colors`}>
+    <button onClick={onClick} className={`flex flex-col items-center gap-1 ${active ? 'text-white' : 'text-gray-400 hover:text-gray-200'} transition-colors ${className}`}>
       {icon}
       <span className="text-[10px] font-medium">{label}</span>
     </button>
