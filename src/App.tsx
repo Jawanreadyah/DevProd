@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon, Play, Pause, SkipForward, SkipBack, Music } from 'lucide-react';
+import { BadgeCheck, Home, Folder, User, Mail, ChevronRight, Plus, Star, Twitter, Linkedin, ArrowLeft, Sun, Moon } from 'lucide-react';
 import * as React from 'react';
 import { useState } from 'react';
 import { motion } from "motion/react";
@@ -45,8 +45,6 @@ import sports3 from '../Sports/sports3.webp';
 import sports4 from '../Sports/sports4.webp';
 import sports5 from '../Sports/sports5.webp';
 import sports6 from '../Sports/sports6.webp';
-import franksChoiceMp3 from '../ESPORTS/franks-choice.mp3';
-import franksChoiceCover from '../ESPORTS/maxresdefault.jpg';
 import othersThumbnail1 from '../others/thumbnail1.webp';
 import othersThumbnail2 from '../others/thumbnail2.webp';
 
@@ -177,11 +175,7 @@ function DesignWorksGrid() {
   const active = DESIGN_CATEGORIES.find(c => c.name === activeCategory);
 
   return (
-    <div className="w-full relative bg-[#F8FAFC] dark:bg-[#111111] rounded-[2.5rem] p-3 sm:p-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1),inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] border border-black/5 dark:border-white/5 transition-colors duration-300">
-      <div className="absolute -top-5 right-6 z-10 w-10 h-10">
-        <img src="https://framerusercontent.com/images/pQSIhyVSrKe5ubgcAAi5huBUI.png?scale-down-to=512&width=551&height=476" alt="Pin" className="w-full h-full object-contain" />
-      </div>
-      <div className="bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-3xl p-6 sm:p-8 border border-black/5 dark:border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_2px_8px_rgba(0,0,0,0.2)] transition-colors duration-300">
+    <Card>
         <div className="flex items-center gap-3 mb-6">
           <img src="https://cdn.discordapp.com/avatars/812387714241396736/1d4d460fc56840c97a734b3ccb10b910.webp?size=128" alt="Profile" className="w-8 h-8 rounded-full object-cover border-2 border-white dark:border-[#2a2a2a] shadow-sm" />
           <h2 className="text-sm font-bold tracking-[0.2em] text-gray-900 dark:text-gray-100 uppercase">Graphic Design Works</h2>
@@ -252,8 +246,7 @@ function DesignWorksGrid() {
             )}
           </div>
         )}
-      </div>
-    </div>
+    </Card>
   );
 }
 
@@ -281,37 +274,63 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen pb-32 pt-12 px-4 sm:px-8 lg:px-12 xl:px-20 flex flex-col lg:flex-row justify-center w-full max-w-[1700px] mx-auto gap-8 lg:gap-8 font-sans bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
-      {/* Main Content */}
-      <div className="w-full lg:w-[650px] xl:w-[750px] bg-[#F8FAFC] dark:bg-[#111111] rounded-[2.5rem] p-3 sm:p-4 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1),inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] shrink-0 z-20 relative border border-black/5 dark:border-white/5 transition-colors duration-300">
-        <div className="space-y-2 sm:space-y-3">
-          <div id="home"><HeaderCard scrollTo={scrollTo} navigate={navigate} /></div>
-          <div id="projects"><SelectedWorks /></div>
-          <div id="about"><AboutMe scrollTo={scrollTo} /></div>
-          <Services scrollTo={scrollTo} />
-          <GitHubActivity />
-          <div id="experience"><Experience /></div>
-          <StacksAndSkills />
-          <FAQ />
-          <div id="contact"><Contact /></div>
-          <Footer />
-        </div>
-      </div>
-      
-      {/* Design Works Sidebar */}
-      <div className="hidden lg:block flex-1 min-w-0 h-screen sticky top-12 z-10">
-        <DesignWorksGrid />
-        <div className="mt-6 px-2">
-          <div className="relative bg-yellow-200 dark:bg-yellow-300 rounded-md py-12 px-10 shadow-[2px_4px_16px_rgba(0,0,0,0.15)] w-full transform rotate-1">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 w-10 h-10">
-              <img src="https://framerusercontent.com/images/pQSIhyVSrKe5ubgcAAi5huBUI.png?scale-down-to=512&width=551&height=476" alt="Pin" className="w-full h-full object-contain" />
+    <div className="min-h-screen pb-32 pt-12 px-4 sm:px-8 lg:px-12 xl:px-20 flex justify-center w-full max-w-[1400px] mx-auto font-sans bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
+      <div className="w-full bg-[#F8FAFC] dark:bg-[#111111] rounded-[2.5rem] p-3 sm:p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1),inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4)] dark:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.4)] border border-black/5 dark:border-white/5 transition-colors duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 auto-rows-auto">
+          {/* Hero + GitHub Activity */}
+          <div className="md:col-span-2" id="home">
+            <HeaderCard scrollTo={scrollTo} navigate={navigate} />
+          </div>
+          <div>
+            <GitHubActivity />
+          </div>
+
+          {/* Selected Works + Design Gallery */}
+          <div id="projects">
+            <SelectedWorks />
+          </div>
+          <div className="lg:col-span-2">
+            <DesignWorksGrid />
+          </div>
+
+          {/* About + Services + Experience */}
+          <div id="about">
+            <AboutMe scrollTo={scrollTo} />
+          </div>
+          <div>
+            <Services scrollTo={scrollTo} />
+          </div>
+          <div id="experience">
+            <Experience />
+          </div>
+
+          {/* Skills + FAQ + Quote */}
+          <div>
+            <StacksAndSkills />
+          </div>
+          <div>
+            <FAQ />
+          </div>
+          <div className="relative">
+            <div className="relative bg-yellow-200 dark:bg-yellow-300 rounded-3xl py-12 px-10 shadow-[2px_4px_16px_rgba(0,0,0,0.15)] w-full h-full flex flex-col justify-center transform rotate-1">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 w-10 h-10">
+                <img src="https://framerusercontent.com/images/pQSIhyVSrKe5ubgcAAi5huBUI.png?scale-down-to=512&width=551&height=476" alt="Pin" className="w-full h-full object-contain" />
+              </div>
+              <p className="text-gray-800 text-2xl leading-relaxed text-center" style={{ fontFamily: "'Caveat', cursive" }}>
+                "Sometimes by losing a battle you find a new way to win the war."
+              </p>
+              <p className="text-gray-600 text-lg mt-4 text-right" style={{ fontFamily: "'Caveat', cursive" }}>
+                — Donald Trump
+              </p>
             </div>
-            <p className="text-gray-800 text-2xl leading-relaxed text-center" style={{ fontFamily: "'Caveat', cursive" }}>
-              "Sometimes by losing a battle you find a new way to win the war."
-            </p>
-            <p className="text-gray-600 text-lg mt-4 text-right" style={{ fontFamily: "'Caveat', cursive" }}>
-              — Donald Trump
-            </p>
+          </div>
+
+          {/* Contact + Footer */}
+          <div className="lg:col-span-3 md:col-span-2" id="contact">
+            <Contact />
+          </div>
+          <div className="lg:col-span-3 md:col-span-2">
+            <Footer />
           </div>
         </div>
       </div>
@@ -345,141 +364,11 @@ function DarkModeProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-const PLAYLIST = [
-  { title: "Frank's Choice", artist: "Tyler Bates", cover: franksChoiceCover, src: franksChoiceMp3 },
-];
-
-function DynamicIsland() {
-  const [expanded, setExpanded] = React.useState(false);
-  const [playing, setPlaying] = React.useState(false);
-  const [trackIndex, setTrackIndex] = React.useState(0);
-  const audioRef = React.useRef<HTMLAudioElement | null>(null);
-  const track = PLAYLIST[trackIndex];
-
-  React.useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(track.src);
-      audioRef.current.loop = true;
-      audioRef.current.play().then(() => {
-        setPlaying(true);
-      }).catch(() => {
-        const playOnClick = () => {
-          if (audioRef.current) {
-            audioRef.current.play().then(() => setPlaying(true));
-          }
-          document.removeEventListener('click', playOnClick);
-        };
-        document.addEventListener('click', playOnClick);
-      });
-    }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    };
-  }, []);
-
-  React.useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.src = track.src;
-      if (playing) audioRef.current.play();
-    }
-  }, [trackIndex]);
-
-  const next = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setTrackIndex((i) => (i + 1) % PLAYLIST.length);
-  };
-  const prev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setTrackIndex((i) => (i - 1 + PLAYLIST.length) % PLAYLIST.length);
-  };
-  const togglePlay = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setPlaying((p) => {
-      const next = !p;
-      if (audioRef.current) {
-        if (next) audioRef.current.play();
-        else audioRef.current.pause();
-      }
-      return next;
-    });
-  };
-
-  React.useEffect(() => {
-    if (!expanded) return;
-    const timer = setTimeout(() => setExpanded(false), 2000);
-    return () => clearTimeout(timer);
-  }, [expanded]);
-
-  return (
-    <div className="fixed top-0 left-1/2 -translate-x-1/2 z-[100]">
-      <motion.div
-        onClick={() => setExpanded((e) => !e)}
-        className="bg-black rounded-b-[24px] cursor-pointer overflow-hidden flex items-end shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
-        animate={{
-          width: expanded ? 340 : 180,
-          height: expanded ? 80 : 40,
-          paddingBottom: expanded ? 12 : 8,
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      >
-        {!expanded ? (
-          <div className="flex items-center justify-between w-full px-4 gap-2">
-            <div className="w-5 h-5 rounded-md overflow-hidden shrink-0">
-              <img src={track.cover} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-white font-medium truncate">{track.title}</p>
-            </div>
-            <div className="flex items-center gap-0.5">
-              {playing ? (
-                <div className="flex items-end gap-[2px] h-3">
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['4px', '12px', '4px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut' }} />
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['8px', '4px', '8px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut', delay: 0.2 }} />
-                  <motion.div className="w-[2px] bg-green-400 rounded-full" animate={{ height: ['4px', '10px', '4px'] }} transition={{ repeat: Infinity, duration: 0.6, ease: 'easeInOut', delay: 0.4 }} />
-                </div>
-              ) : (
-                <Music className="w-3 h-3 text-white/50" />
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center w-full px-4 gap-3">
-            <motion.div
-              className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-lg"
-              animate={{ rotate: playing ? 360 : 0 }}
-              transition={{ repeat: playing ? Infinity : 0, duration: 4, ease: 'linear' }}
-            >
-              <img src={track.cover} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-white font-semibold truncate">{track.title}</p>
-              <p className="text-[10px] text-white/50 truncate">{track.artist}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button onClick={prev} className="text-white/70 hover:text-white transition-colors">
-                <SkipBack className="w-4 h-4" fill="currentColor" />
-              </button>
-              <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform">
-                {playing ? <Pause className="w-4 h-4 text-black" fill="black" /> : <Play className="w-4 h-4 text-black ml-0.5" fill="black" />}
-              </button>
-              <button onClick={next} className="text-white/70 hover:text-white transition-colors">
-                <SkipForward className="w-4 h-4" fill="currentColor" />
-              </button>
-            </div>
-          </div>
-        )}
-      </motion.div>
-    </div>
-  );
-}
 
 export default function App() {
   return (
     <DarkModeProvider>
       <BrowserRouter>
-        <DynamicIsland />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
@@ -493,7 +382,7 @@ export default function App() {
 
 function Card({ children, className = "" }: { children: React.ReactNode, className?: string }) {
   return (
-    <div className={`bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-3xl p-8 sm:p-10 border border-black/5 dark:border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_2px_8px_rgba(0,0,0,0.2)] transition-colors duration-300 ${className}`}>
+    <div className={`bg-[#F5F5F5] dark:bg-[#1a1a1a] rounded-3xl p-8 sm:p-10 h-full border border-black/5 dark:border-white/5 shadow-[inset_0_1px_0_0_rgba(255,255,255,1),inset_0_0_0_1px_rgba(255,255,255,0.4),0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03),0_2px_8px_rgba(0,0,0,0.2)] transition-colors duration-300 ${className}`}>
       {children}
     </div>
   );
