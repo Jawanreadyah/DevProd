@@ -813,7 +813,7 @@ function FloatingNav() {
 
   return (
     <>
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#2a2a2a]/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md rounded-3xl px-6 py-3 flex items-center gap-8 shadow-xl z-50">
+      <div className="fixed bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 bg-[#2a2a2a]/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md rounded-3xl px-4 sm:px-6 py-3 flex items-center gap-5 sm:gap-8 shadow-xl z-50">
         <NavItem icon={<Home className="w-5 h-5" />} label="Home" onClick={() => scrollTo('home')} active={location.pathname === '/' && !window.location.hash} />
         <NavItem icon={<Folder className="w-5 h-5" />} label="Projects" onClick={() => scrollTo('projects')} active={location.pathname.startsWith('/projects')} />
         <NavItem icon={<User className="w-5 h-5" />} label="About" onClick={() => scrollTo('about')} />
